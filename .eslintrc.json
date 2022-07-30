@@ -20,6 +20,8 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "no-unused-vars":"warn",
+      "no-param-reassign": "off",
       "react/react-in-jsx-scope": "off",
       "react/jsx-filename-extension": [
         "warn",
