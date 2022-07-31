@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export interface CounterState {
-  value: number;
-  isLoading: boolean
-}
+import { CounterState, ICache } from './type';
 
 const initialState: CounterState = {
-  value: 0,
   isLoading: false,
+  cacheData: {},
+  totalPage: 0,
+  items: [],
 };
 
 export const counterSlice = createSlice({
@@ -18,20 +16,20 @@ export const counterSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
-    increment: (state) => {
-      state.value += 1;
+    addCache: (state, action: PayloadAction<ICache>) => {
+      state.cacheData = { ...state.cacheData, [action.payload.keyCache]: action.payload.cacheValue };
     },
-    decrement: (state) => {
-      state.value -= 1;
+    setTotalPage: (state, action: PayloadAction<number>) => {
+      state.totalPage = action.payload;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    setItems: (state, action: PayloadAction<any>) => {
+      state.items = action.payload;
     },
   },
 });
 
 export const {
-  increment, decrement, incrementByAmount, setIsLoading,
+  setIsLoading, addCache, setTotalPage, setItems,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -20,10 +20,11 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "max-len":"off",
       "guard-for-in": "off",
       "no-restricted-syntax":"off",
       "no-use-before-define": "off",
-      "no-unused-vars":"warn",
+      "no-unused-vars":"off",
       "no-param-reassign": "off",
       "react/react-in-jsx-scope": "off",
       "react/jsx-filename-extension": [

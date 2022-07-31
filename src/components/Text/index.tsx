@@ -33,6 +33,7 @@ interface IP {
   color?: TColor;
 }
 const P = styled.p<IP>`
+  text-decoration: none; 
   font-size: ${({ theme, size }) => theme.fontSizes[size || 'md']};
   font-weight: ${({ theme, weight }) => theme.fontWeights[weight || 'normal']};
   color: ${({ theme, color }) => theme.colors[color || 'black']}

@@ -1,14 +1,19 @@
 import Navbar from 'components/Navbar';
 import Input from 'components/Input';
 import DropDown from 'components/DropDown';
-import Card from 'components/Card';
+import { useSelector } from 'react-redux';
+import CardUser from 'components/CardUser';
+import CardRepository from 'components/CardRepository';
 import { listType } from 'constants/global';
+import Skeleton from 'components/Skeleton';
+import { RootState } from 'store';
 import useHook from './useHook';
 import {
   Container, Content, WrapperFilter, CardWrapper,
 } from './style';
 
 function Home() {
+  const { items, isLoading, totalPage } = useSelector((state: RootState) => state.github);
   const {
     keyWord, onChange, typeSelected, handleChangeType,
   } = useHook();
@@ -21,10 +26,15 @@ function Home() {
           <DropDown onChange={handleChangeType} value={typeSelected} options={listType} />
         </WrapperFilter>
         <CardWrapper>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {
+            isLoading ? (
+              <Skeleton />
+            ) : (
+              items.map((el:any) => (
+                typeSelected === 'users' ? <CardUser data={el} key={el.id} /> : <CardRepository data={el} key={el.id} />
+              ))
+            )
+          }
         </CardWrapper>
       </Content>
     </Container>

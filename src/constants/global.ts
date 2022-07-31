@@ -1,5 +1,6 @@
 const { REACT_APP_BASE_URL_API } = process.env;
 export const baseUrl = REACT_APP_BASE_URL_API;
+export const perPage = 10;
 export const REQUEST_METHOD = {
   GET: 'GET',
   POST: 'POST',
@@ -15,6 +16,6 @@ export const listType = [
   },
   {
     label: 'Repositories',
-    value: 'repos',
+    value: 'repositories',
   },
 ];

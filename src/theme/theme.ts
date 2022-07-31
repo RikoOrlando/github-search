@@ -3,6 +3,7 @@ const theme = {
     black: '#090909',
     gray: '#6c6a6a',
     gray200: '#c2c2c2',
+    blue: '#4287f5',
   },
   fontSizes: {
     sm: '12px',
@@ -22,5 +23,5 @@ const theme = {
 
 export type TWeight = 'light' | 'normal' | 'bold'
 export type TSize = 'sm' | 'md' | 'lg'
-export type TColor = 'gray' | 'black' | 'gray200'
+export type TColor = 'gray' | 'black' | 'gray200' | 'blue'
 export default theme;

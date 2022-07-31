@@ -4,10 +4,12 @@ import { baseUrl } from 'constants/global';
 type TUrl = string
 type TMethod = string
 
-const fetcher = async (url:TUrl, method:TMethod) => {
+const fetcher = async (url:TUrl, method:TMethod, params?:any) => {
   const config = {
     method,
     url: `${baseUrl}${url}`,
+    params: params || {},
+
   };
   try {
     const res: any = await axios.request(config);

@@ -13,7 +13,16 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     transition: all ease .3s;
   }
-
+  a{
+    text-decoration: none;
+    :hover{
+      text-decoration: none;
+    }
+    :visited{
+      text-decoration: none;
+    }
+    color: #246EE5;
+  }
 `;
 
 export default GlobalStyle;
