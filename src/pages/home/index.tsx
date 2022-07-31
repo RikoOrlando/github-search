@@ -7,15 +7,19 @@ import CardRepository from 'components/CardRepository';
 import { listType } from 'constants/global';
 import Skeleton from 'components/Skeleton';
 import { RootState } from 'store';
+import Pagination from 'components/Pagination';
 import useHook from './useHook';
 import {
   Container, Content, WrapperFilter, CardWrapper,
+  PaginationWrapper,
 } from './style';
 
 function Home() {
   const { items, isLoading, totalPage } = useSelector((state: RootState) => state.github);
   const {
     keyWord, onChange, typeSelected, handleChangeType,
+    page,
+    handleChangePage,
   } = useHook();
   return (
     <Container>
@@ -36,6 +40,9 @@ function Home() {
             )
           }
         </CardWrapper>
+        <PaginationWrapper>
+          <Pagination activePage={page} totalPage={totalPage} onChange={handleChangePage} />
+        </PaginationWrapper>
       </Content>
     </Container>
   );

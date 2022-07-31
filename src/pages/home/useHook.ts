@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import {
   setIsLoading, addCache, setItems, setTotalPage,
+  resetCache,
 } from 'store/github';
 import fetcher from 'utils/fetcher';
 import { REQUEST_METHOD, perPage } from 'constants/global';
@@ -14,7 +15,7 @@ const { GET } = REQUEST_METHOD;
 function useHook() {
   const dispatch = useDispatch();
   const { cacheData } = useSelector((state:RootState) => state.github);
-  const { objQuery, handleChangeFilter } = useFilter();
+  const { objQuery, handleChangeFilter, handleChangePageQuery } = useFilter();
   const [typeSelected, setTypeSelected] = useState(objQuery.type || 'users');
   const refSearch:any = useRef(null);
   const q = useMemo(() => objQuery.keyword || 'a', [objQuery]);
@@ -26,15 +27,16 @@ function useHook() {
     try {
       const url = `/search/${type}`;
       const { data } = await fetcher(url, GET, { q, page, per_page: perPage });
-      const keyCache = `${type}${q}${perPage}`;
+      const keyCache = `${type}${q}${page}`;
       const totalPage = Math.ceil(data.total_count / perPage);
+      const limitedTotalPage = totalPage > 100 ? 100 : totalPage;
       const { items } = data;
       const cacheDataPayload = {
         totalPage,
         items,
       };
       dispatch(addCache({ keyCache, cacheValue: cacheDataPayload }));
-      dispatch(setTotalPage(totalPage));
+      dispatch(setTotalPage(limitedTotalPage));
       dispatch(setItems(items));
     } catch (error) {
       console.error(error);
@@ -43,7 +45,7 @@ function useHook() {
     }
   };
   useEffect(() => {
-    const keyCache = `${type}${q}${perPage}`;
+    const keyCache = `${type}${q}${page}`;
     const data = cacheData[keyCache];
     if (data) {
       dispatch(setTotalPage(data.totalPage));
@@ -64,8 +66,16 @@ function useHook() {
     setTypeSelected(typeVal);
     handleChangeFilter('type', typeVal);
   };
+  const handleChangePage = (desPage:string) => {
+    handleChangePageQuery('page', desPage);
+  };
   return {
-    keyWord, onChange, typeSelected, handleChangeType,
+    keyWord,
+    onChange,
+    typeSelected,
+    handleChangeType,
+    page,
+    handleChangePage,
   };
 }
 

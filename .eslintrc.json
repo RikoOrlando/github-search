@@ -20,6 +20,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "no-plusplus":"off",
       "max-len":"off",
       "guard-for-in": "off",
       "no-restricted-syntax":"off",

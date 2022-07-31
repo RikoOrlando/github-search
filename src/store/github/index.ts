@@ -16,6 +16,9 @@ export const counterSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    resetCache: (state) => {
+      state.cacheData = {};
+    },
     addCache: (state, action: PayloadAction<ICache>) => {
       state.cacheData = { ...state.cacheData, [action.payload.keyCache]: action.payload.cacheValue };
     },
@@ -30,6 +33,7 @@ export const counterSlice = createSlice({
 
 export const {
   setIsLoading, addCache, setTotalPage, setItems,
+  resetCache,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;
