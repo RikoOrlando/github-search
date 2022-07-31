@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import githubReducer from './github';
 
 const persistConfig = {
-  key: 'root',
+  key: 'root1',
   storage,
 };
 

@@ -18,3 +18,10 @@ export const WrapperFilter = styled.div`
   margin-top: 20px;
   gap: 8px;
 `;
+
+export const CardWrapper = styled.div`
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  display: flex;
+`;

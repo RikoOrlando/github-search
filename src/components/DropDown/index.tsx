@@ -1,12 +1,23 @@
-import { memo, useState, useRef } from 'react';
-import { Text } from 'components';
+import {
+  memo, useState, useRef, useMemo,
+} from 'react';
+import Text from 'components/Text';
 import iconDown from 'assets/images/down.png';
 import useOutsideAlerter from 'customHooks/useOutsideAlerter';
 import {
   Container, Img, Wrapper, ContainerOptions, Option,
 } from './style';
 
-function DropDown() {
+interface IOption {
+  value: string;
+  label: string
+}
+interface IDropDown {
+  options: IOption[];
+  value: string;
+  onChange: (val: string) => void
+}
+function DropDown({ options, value, onChange }:IDropDown) {
   const ref = useRef(null);
   const [isShow, setIsShow] = useState(false);
   useOutsideAlerter(ref, () => {
@@ -15,27 +26,35 @@ function DropDown() {
   const handleClickDropdown = () => {
     setIsShow(true);
   };
+  const selected = useMemo(() => {
+    const finded = options.find((el) => el.value === value);
+    if (finded) return finded.label;
+    return 'Select';
+  }, [value, options]);
+  const handleClickOption = (opt: IOption) => {
+    setIsShow(false);
+    onChange(opt.value);
+  };
   return (
     <Wrapper ref={ref}>
       <Container onClick={handleClickDropdown}>
         <Text color="gray">
-          Users
+          {selected}
         </Text>
         <Img src={iconDown} />
       </Container>
       {
         isShow && (
         <ContainerOptions>
-          <Option>
-            <Text color="gray">
-              Users
-            </Text>
-          </Option>
-          <Option>
-            <Text color="gray">
-              Repositories
-            </Text>
-          </Option>
+          {
+            options.map((el) => (
+              <Option key={el.value} onClick={() => handleClickOption(el)}>
+                <Text color="gray">
+                  {el.label}
+                </Text>
+              </Option>
+            ))
+          }
         </ContainerOptions>
         )
       }

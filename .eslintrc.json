@@ -20,6 +20,8 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "guard-for-in": "off",
+      "no-restricted-syntax":"off",
       "no-use-before-define": "off",
       "no-unused-vars":"warn",
       "no-param-reassign": "off",

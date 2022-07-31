@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import githubLogo from 'assets/images/GitHub-Mark-64px.png';
-import { Text } from 'components';
+import Text from 'components/Text';
 import { Container, Img, ContainerText } from './style';
 
 function Navbar() {
