@@ -2,17 +2,22 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface CounterState {
-  value: number
+  value: number;
+  isLoading: boolean
 }
 
 const initialState: CounterState = {
   value: 0,
+  isLoading: false,
 };
 
 export const counterSlice = createSlice({
   name: 'github',
   initialState,
   reducers: {
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
     increment: (state) => {
       state.value += 1;
     },
@@ -25,7 +30,8 @@ export const counterSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const {
+  increment, decrement, incrementByAmount, setIsLoading,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;

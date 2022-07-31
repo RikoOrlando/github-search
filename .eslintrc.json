@@ -20,6 +20,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "no-use-before-define": "off",
       "no-unused-vars":"warn",
       "no-param-reassign": "off",
       "react/react-in-jsx-scope": "off",
