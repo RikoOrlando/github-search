@@ -11,7 +11,7 @@ function LimitedRequest({ handleTryAgain }: ILimitedRequest) {
   return (
     <Container>
       <Img src={limitedIllustration} />
-      <InfoWrap>
+      <InfoWrap role="contentinfo">
         <Text weight="bold" size="lg2xl">Oppss</Text>
         <Text className="sub-title">Sorry API rate limit, Please Try Again Later</Text>
         <Button onClick={handleTryAgain}>Try Again</Button>

@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 function LoadingPage() {
   return (
     <Container>
-      <LoaderComponent />
+      <LoaderComponent title="spinner" />
     </Container>
   );
 }

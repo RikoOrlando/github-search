@@ -5,9 +5,9 @@ import { Container, Img, ContainerText } from './style';
 
 function Navbar() {
   return (
-    <Container>
+    <Container id="navbar">
       <Img src={githubLogo} />
-      <ContainerText>
+      <ContainerText title="Header">
         <Text weight="bold">Github Searcher</Text>
         <Text color="gray" size="sm">Search users or repositories below</Text>
       </ContainerText>

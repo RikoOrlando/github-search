@@ -76,7 +76,7 @@ function Pagination({ onChange, activePage, totalPage }:IPagination) {
   const allowPrev = useMemo(() => activePage !== '1', [totalPage, activePage]);
   return (
     <Container>
-      <WrapPage allow={allowPrev} onClick={() => allowPrev && onChange(`${Number(activePage) - 1}`)}>
+      <WrapPage title="previous" allow={allowPrev} onClick={() => allowPrev && onChange(`${Number(activePage) - 1}`)}>
         <Text color={allowPrev ? 'black' : 'gray'} weight={allowPrev ? 'bold' : 'light'}>Previous</Text>
       </WrapPage>
       {
@@ -86,7 +86,7 @@ function Pagination({ onChange, activePage, totalPage }:IPagination) {
           </WrapPage>
         ))
       }
-      <WrapPage allow={allowNext} onClick={() => allowNext && onChange(`${Number(activePage) + 1}`)}>
+      <WrapPage title="next" allow={allowNext} onClick={() => allowNext && onChange(`${Number(activePage) + 1}`)}>
         <Text color={allowNext ? 'black' : 'gray'} weight={allowNext ? 'bold' : 'light'}>Next</Text>
       </WrapPage>
 

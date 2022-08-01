@@ -8,7 +8,7 @@ function Skeleton() {
       {
         staticData.map((el) => (
           <Card key={el}>
-            <Animated />
+            <Animated title={`animation-${el}`} />
           </Card>
         ))
       }

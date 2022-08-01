@@ -7,7 +7,7 @@ function NoData() {
   return (
     <Container>
       <Img src={notFound} />
-      <InfoWrap>
+      <InfoWrap role="contentinfo">
         <Text weight="bold" size="lg2xl">Oppss</Text>
         <Text className="sub-title">Data not found</Text>
       </InfoWrap>
