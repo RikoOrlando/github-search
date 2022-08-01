@@ -2,7 +2,8 @@ export interface CounterState {
   isLoading: boolean;
   cacheData: any;
   totalPage: number;
-  items: any
+  items: any;
+  isApiLimited: boolean;
 }
 export interface ICacheValue {
   totalPage: number;

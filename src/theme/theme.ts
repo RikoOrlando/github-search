@@ -9,6 +9,7 @@ const theme = {
     sm: '12px',
     md: '14px',
     lg: '16px',
+    lg2xl: '24px',
   },
   fontWeights: {
     bold: '500',
@@ -22,6 +23,6 @@ const theme = {
 };
 
 export type TWeight = 'light' | 'normal' | 'bold'
-export type TSize = 'sm' | 'md' | 'lg'
+export type TSize = 'sm' | 'md' | 'lg' | 'lg2xl'
 export type TColor = 'gray' | 'black' | 'gray200' | 'blue'
 export default theme;

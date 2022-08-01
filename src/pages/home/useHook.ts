@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import {
   setIsLoading, addCache, setItems, setTotalPage,
-  resetCache,
+  setIsApiLimited, resetCache,
 } from 'store/github';
 import fetcher from 'utils/fetcher';
 import { REQUEST_METHOD, perPage } from 'constants/global';
@@ -32,14 +32,17 @@ function useHook() {
       const limitedTotalPage = totalPage > 100 ? 100 : totalPage;
       const { items } = data;
       const cacheDataPayload = {
-        totalPage,
+        totalPage: limitedTotalPage,
         items,
       };
       dispatch(addCache({ keyCache, cacheValue: cacheDataPayload }));
       dispatch(setTotalPage(limitedTotalPage));
       dispatch(setItems(items));
-    } catch (error) {
-      console.error(error);
+      dispatch(setIsApiLimited(false));
+    } catch (error:any) {
+      if (error.status === 403) {
+        dispatch(setIsApiLimited(true));
+      }
     } finally {
       dispatch(setIsLoading(false));
     }
@@ -69,6 +72,9 @@ function useHook() {
   const handleChangePage = (desPage:string) => {
     handleChangePageQuery('page', desPage);
   };
+  const handleTryAgain = () => {
+    handleFetchData();
+  };
   return {
     keyWord,
     onChange,
@@ -76,6 +82,7 @@ function useHook() {
     handleChangeType,
     page,
     handleChangePage,
+    handleTryAgain,
   };
 }
 

@@ -31,3 +31,7 @@ export const PaginationWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const ContainerItemList = styled.div`
+  flex: 1;
+`;

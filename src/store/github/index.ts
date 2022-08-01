@@ -7,6 +7,7 @@ const initialState: CounterState = {
   cacheData: {},
   totalPage: 0,
   items: [],
+  isApiLimited: false,
 };
 
 export const counterSlice = createSlice({
@@ -15,6 +16,9 @@ export const counterSlice = createSlice({
   reducers: {
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
+    },
+    setIsApiLimited: (state, action) => {
+      state.isApiLimited = action.payload;
     },
     resetCache: (state) => {
       state.cacheData = {};
@@ -34,6 +38,7 @@ export const counterSlice = createSlice({
 export const {
   setIsLoading, addCache, setTotalPage, setItems,
   resetCache,
+  setIsApiLimited,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

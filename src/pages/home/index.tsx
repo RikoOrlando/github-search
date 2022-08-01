@@ -2,12 +2,10 @@ import Navbar from 'components/Navbar';
 import Input from 'components/Input';
 import DropDown from 'components/DropDown';
 import { useSelector } from 'react-redux';
-import CardUser from 'components/CardUser';
-import CardRepository from 'components/CardRepository';
 import { listType } from 'constants/global';
-import Skeleton from 'components/Skeleton';
 import { RootState } from 'store';
 import Pagination from 'components/Pagination';
+import ItemList from './itemList';
 import useHook from './useHook';
 import {
   Container, Content, WrapperFilter, CardWrapper,
@@ -15,11 +13,14 @@ import {
 } from './style';
 
 function Home() {
-  const { items, isLoading, totalPage } = useSelector((state: RootState) => state.github);
+  const {
+    totalPage, isApiLimited, items,
+  } = useSelector((state: RootState) => state.github);
   const {
     keyWord, onChange, typeSelected, handleChangeType,
     page,
     handleChangePage,
+    handleTryAgain,
   } = useHook();
   return (
     <Container>
@@ -30,19 +31,15 @@ function Home() {
           <DropDown onChange={handleChangeType} value={typeSelected} options={listType} />
         </WrapperFilter>
         <CardWrapper>
-          {
-            isLoading ? (
-              <Skeleton />
-            ) : (
-              items.map((el:any) => (
-                typeSelected === 'users' ? <CardUser data={el} key={el.id} /> : <CardRepository data={el} key={el.id} />
-              ))
-            )
-          }
+          <ItemList handleTryAgain={handleTryAgain} typeSelected={typeSelected} />
         </CardWrapper>
-        <PaginationWrapper>
-          <Pagination activePage={page} totalPage={totalPage} onChange={handleChangePage} />
-        </PaginationWrapper>
+        {
+          !isApiLimited && Boolean(items.length) && (
+          <PaginationWrapper>
+            <Pagination activePage={page} totalPage={totalPage} onChange={handleChangePage} />
+          </PaginationWrapper>
+          )
+        }
       </Content>
     </Container>
   );
