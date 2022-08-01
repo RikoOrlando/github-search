@@ -14,6 +14,18 @@ export const Container = styled.div`
     -moz-box-shadow: 0px 2px 16px 0px rgba(202, 211, 225, 0.4);
     border-color: ${({ theme }) => theme.colors.blue};
   }
+  @media (max-width: 549px) {
+    width: calc(100vw - 40px);
+  }
+  p{
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @media (max-width: 549px) {
+      max-width: calc(100vw - 80px);
+    }
+  }
 `;
 
 export const Avatar = styled.img`

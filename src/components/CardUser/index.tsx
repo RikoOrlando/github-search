@@ -7,8 +7,8 @@ interface ICard {
 }
 function Card({ data }:ICard) {
   return (
-    <a target="_blank" href={data.html_url} rel="noreferrer">
-      <Container>
+    <Container>
+      <a target="_blank" href={data.html_url} rel="noreferrer">
         <WrapperInfo>
           <Avatar src={data.avatar_url} />
           <div>
@@ -20,8 +20,8 @@ function Card({ data }:ICard) {
             </Text>
           </div>
         </WrapperInfo>
-      </Container>
-    </a>
+      </a>
+    </Container>
   );
 }
 

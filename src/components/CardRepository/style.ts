@@ -12,6 +12,13 @@ export const Container = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: 150px;
+    @media (max-width: 549px) {
+      max-width: calc(100vw - 80px);
+    }
+  }
+  @media (max-width: 549px) {
+    width: calc(100vw - 40px);
   }
   :hover{
     box-shadow: 0px 2px 16px 0px rgba(202, 211, 225, 0.4);

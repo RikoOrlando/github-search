@@ -5,6 +5,9 @@ export const Card = styled.div`
   height: 150px;
   width: 250px;
   background: #eee;
+  @media (max-width: 549px) {
+    width: calc(100vw - 40px);
+  }
 `;
 
 export const Container = styled.div`
