@@ -6,13 +6,14 @@ interface IText {
   children:ReactNode | string;
   size?: TSize;
   weight?: TWeight;
-  color?: TColor
+  color?: TColor;
+  className?: string;
 }
 function Text({
-  children, size, weight, color,
+  children, size, weight, color, className,
 }:IText) {
   return (
-    <P color={color} size={size} weight={weight}>
+    <P color={color} size={size} weight={weight} className={className}>
       {
         children
       }
@@ -24,6 +25,7 @@ Text.defaultProps = {
   size: 'md',
   weight: 'normal',
   color: 'black',
+  className: '',
 };
 export default memo(Text);
 
@@ -33,6 +35,7 @@ interface IP {
   color?: TColor;
 }
 const P = styled.p<IP>`
+  text-decoration: none; 
   font-size: ${({ theme, size }) => theme.fontSizes[size || 'md']};
   font-weight: ${({ theme, weight }) => theme.fontWeights[weight || 'normal']};
   color: ${({ theme, color }) => theme.colors[color || 'black']}

@@ -15,7 +15,7 @@ interface IOption {
 interface IDropDown {
   options: IOption[];
   value: string;
-  onChange: (val: string) => void
+  onChange: (_: string) => void
 }
 function DropDown({ options, value, onChange }:IDropDown) {
   const ref = useRef(null);

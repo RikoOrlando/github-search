@@ -25,3 +25,13 @@ export const CardWrapper = styled.div`
   flex-wrap: wrap;
   display: flex;
 `;
+
+export const PaginationWrapper = styled.div`
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const ContainerItemList = styled.div`
+  flex: 1;
+`;

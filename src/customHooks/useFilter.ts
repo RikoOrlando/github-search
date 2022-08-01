@@ -11,28 +11,21 @@ function useFilter() {
     [location.search],
   );
 
-  // const handleChangePage = (type) => {
-  //   const lastQuery = transformQuerytoObj(location.search);
-  //   if (lastQuery.pageIndex) {
-  //     if (type === 'next') {
-  //       lastQuery.pageIndex = Number(lastQuery.pageIndex) + 1;
-  //     } else {
-  //       lastQuery.pageIndex = Number(lastQuery.pageIndex) - 1;
-  //     }
-  //   } else {
-  //     lastQuery.pageIndex = 1;
-  //   }
-  //   const query = transformObjtoQuery(lastQuery);
-  //   history.replace(`${query}${location.hash}`);
-  // };
+  const handleChangePageQuery = (field:string, value:string) => {
+    const currentParams:any = { ...objQuery, [field]: value };
+    const query = transformObjtoQuery(currentParams);
+    navigate(query);
+  };
   const handleChangeFilter = (field:string, value:string) => {
-    const currentParams = { ...objQuery, [field]: value };
+    const currentParams:any = { ...objQuery, [field]: value };
+    delete currentParams.page;
     const query = transformObjtoQuery(currentParams);
     navigate(query);
   };
   return {
     objQuery,
     handleChangeFilter,
+    handleChangePageQuery,
   };
 }
 

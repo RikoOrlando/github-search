@@ -1,16 +1,26 @@
 import Navbar from 'components/Navbar';
 import Input from 'components/Input';
 import DropDown from 'components/DropDown';
-import Card from 'components/Card';
+import { useSelector } from 'react-redux';
 import { listType } from 'constants/global';
+import { RootState } from 'store';
+import Pagination from 'components/Pagination';
+import ItemList from './itemList';
 import useHook from './useHook';
 import {
   Container, Content, WrapperFilter, CardWrapper,
+  PaginationWrapper,
 } from './style';
 
 function Home() {
   const {
+    totalPage, isApiLimited, items,
+  } = useSelector((state: RootState) => state.github);
+  const {
     keyWord, onChange, typeSelected, handleChangeType,
+    page,
+    handleChangePage,
+    handleTryAgain,
   } = useHook();
   return (
     <Container>
@@ -21,11 +31,15 @@ function Home() {
           <DropDown onChange={handleChangeType} value={typeSelected} options={listType} />
         </WrapperFilter>
         <CardWrapper>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <ItemList handleTryAgain={handleTryAgain} typeSelected={typeSelected} />
         </CardWrapper>
+        {
+          !isApiLimited && Boolean(items.length) && (
+          <PaginationWrapper>
+            <Pagination activePage={page} totalPage={totalPage} onChange={handleChangePage} />
+          </PaginationWrapper>
+          )
+        }
       </Content>
     </Container>
   );

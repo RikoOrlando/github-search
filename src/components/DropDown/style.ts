@@ -16,10 +16,11 @@ export const ContainerOptions = styled.div`
   position: absolute;
   background: white;
   margin-top: 12px;
- box-shadow: 0px 2px 16px 0px rgba(202, 211, 225, 0.4);
+  box-shadow: 0px 2px 16px 0px rgba(202, 211, 225, 0.4);
   -webkit-box-shadow: 0px 2px 16px 0px rgba(202, 211, 225, 0.4);
   -moz-box-shadow: 0px 2px 16px 0px rgba(202, 211, 225, 0.4);
   border-radius: 4px;
+  z-index: 20;
 `;
 
 export const Img = styled.img`
